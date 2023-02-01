@@ -13,7 +13,7 @@ public class SistemaDeCadastro extends Application {
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(SistemaDeCadastro.class.getResource("SistemaDeCadastro.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 300, 375);
-        stage.setTitle("Cadastro");
+        stage.setTitle("Cadastro de novo usuário");
         stage.setResizable(false);
         stage.setScene(scene);
         stage.show();
@@ -21,7 +21,6 @@ public class SistemaDeCadastro extends Application {
 
     @Override
     public void stop() throws Exception {
-        System.out.println("Desconectado");
         DataBase.closeConnection();
         super.stop();
     }

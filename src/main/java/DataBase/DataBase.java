@@ -1,40 +1,47 @@
 package DataBase;
 
+import javafx.scene.control.Alert;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Properties;
 
 public class DataBase {
 
-    private static Connection connection = null;
+    private static Connection conexao = null;
+
     public static Connection getConnection(){
-        if(connection == null){
+        if(conexao == null){
             try {
                 Properties properties = loadProerties();
-                String user = properties.getProperty("user");
-                String password = properties.getProperty("password");
                 String url = properties.getProperty("dburl");
-                connection = DriverManager.getConnection(url, user, password);
+                String usuario = properties.getProperty("usuario");
+                String senha = properties.getProperty("senha");
+                conexao = DriverManager.getConnection(url, usuario, senha);
             }
             catch (SQLException e){
                 throw new DataBaseException(e.getMessage());
             }
         }
-        return connection;
+        return conexao;
     }
+
     public static void closeConnection(){
-        if (connection != null){
+        if (conexao != null){
             try {
-                connection.close();
+                conexao.close();
             }
             catch (SQLException e){
                 throw new DataBaseException(e.getMessage());
             }
         }
     }
+
     private static Properties loadProerties(){
         try{
             FileInputStream fs = new FileInputStream("DataBase.properties");
@@ -45,5 +52,31 @@ public class DataBase {
         catch (IOException e) {
             throw new DataBaseException(e.getMessage());
         }
+    }
+
+    public static void cadastrarNovoUsuario(String nome, String email, Date dataNascimento, String senha, String sexo){
+        try {
+            PreparedStatement comandoSQL = conexao.prepareStatement(
+                    "insert into cadastros"
+                    + "(id, nomeCompleto, email, dataNascimento, senha, sexo)"
+                    + "values"
+                    + "(?,?,?,?,?,?)"
+            );
+            comandoSQL.setInt(1,3);
+            comandoSQL.setString(2, nome);
+            comandoSQL.setString(3, email);
+            comandoSQL.setDate(4, dataNascimento);
+            comandoSQL.setString(5, senha);
+            comandoSQL.setString(6, sexo);
+            comandoSQL.executeUpdate();
+        }
+        catch (SQLException excecaoCadastro) {
+            Alert cadastroFalhou = new Alert(Alert.AlertType.ERROR, "Não foi possível cadastrar o usuario!");
+            throw new DataBaseException(excecaoCadastro.getMessage());
+        }
+    }
+
+    public static void obterUsuariosCadastrados(){
+
     }
 }
