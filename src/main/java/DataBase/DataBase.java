@@ -72,7 +72,9 @@ public class DataBase {
         }
         catch (SQLException excecaoCadastro) {
             Alert cadastroFalhou = new Alert(Alert.AlertType.ERROR, "Não foi possível cadastrar o usuario!");
-            throw new DataBaseException(excecaoCadastro.getMessage());
+            cadastroFalhou.setTitle("Erro ao cadastrar usuário");
+            cadastroFalhou.setHeaderText("");
+            cadastroFalhou.show();
         }
     }
 
