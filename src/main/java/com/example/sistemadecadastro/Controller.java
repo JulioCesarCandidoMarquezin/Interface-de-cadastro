@@ -43,6 +43,7 @@ public class Controller implements Initializable{
     public Button botaoCadastrar;
 
     private String textoMostradoEmCasoDeCadastroInvalido = "";
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         DataBase.getConnection();
@@ -68,11 +69,12 @@ public class Controller implements Initializable{
         } catch (Exception e){cadastroValido = false; textoMostradoEmCasoDeCadastroInvalido = textoMostradoEmCasoDeCadastroInvalido.concat("Data inválida\n");}
         if(senha.getText().length() < 12){
             cadastroValido = false;
-            textoMostradoEmCasoDeCadastroInvalido = textoMostradoEmCasoDeCadastroInvalido.concat("Senha muito curta\n");
-        }
-        if(!confirmarSenha.getText().equals(senha.getText())){
-            cadastroValido = false;
-            textoMostradoEmCasoDeCadastroInvalido = textoMostradoEmCasoDeCadastroInvalido.concat("A confirmação de senha não bate com a senha\n");
+            textoMostradoEmCasoDeCadastroInvalido = textoMostradoEmCasoDeCadastroInvalido.concat((senha.getText().equals("") || senha.getText() == null) ? "Digite uma senha\n" : "Senha muito curta\n");
+        } else {
+            if(!confirmarSenha.getText().equals(senha.getText())){
+                cadastroValido = false;
+                textoMostradoEmCasoDeCadastroInvalido = textoMostradoEmCasoDeCadastroInvalido.concat("A confirmação de senha não bate com a senha\n");
+            }
         }
         if(!homem.isSelected() && !mulher.isSelected() && !prefiroNaoDizer.isSelected()){
             cadastroValido = false;
@@ -83,10 +85,13 @@ public class Controller implements Initializable{
 
     public void cadastrar(){
         if(validarCadastracao()){
-            DataBase.cadastrarNovoUsuario(nome.getText(), email.getText(), Date.valueOf(dataDeNascimento.getValue()), senha.getText(), grupoDeRadioButtons.getSelectedToggle().toString());
+            DataBase.cadastrarNovoUsuario(nome.getText(), email.getText(), Date.valueOf(dataDeNascimento.getValue()), senha.getText(), grupoDeRadioButtons.getSelectedToggle().selectedProperty().getName());
         }
         else {
             Alert alertaDeErro = new Alert(Alert.AlertType.WARNING, textoMostradoEmCasoDeCadastroInvalido);
+            alertaDeErro.setResizable(false);
+            alertaDeErro.setTitle("informaçãoes faltantes para cadastro");
+            alertaDeErro.setHeaderText("");
             alertaDeErro.show();
             textoMostradoEmCasoDeCadastroInvalido = "";
         }
