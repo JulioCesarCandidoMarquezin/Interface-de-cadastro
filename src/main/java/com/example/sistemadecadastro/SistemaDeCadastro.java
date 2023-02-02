@@ -12,7 +12,7 @@ public class SistemaDeCadastro extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(SistemaDeCadastro.class.getResource("SistemaDeCadastro.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 300, 375);
+        Scene scene = new Scene(fxmlLoader.load(), 375, 400);
         stage.setTitle("Cadastro de novo usuário");
         stage.setResizable(false);
         stage.setScene(scene);

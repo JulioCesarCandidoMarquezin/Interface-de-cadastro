@@ -4,11 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0f84d2bb-13f8-48a2-851b-c8d8a2fec16b" name="Changes" comment="Pequenas mudanças (nada o que comentar)">
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+    <list default="true" id="0f84d2bb-13f8-48a2-851b-c8d8a2fec16b" name="Changes" comment="Acionamento da função &quot;cadastrar&quot;, mudança no nome do botão, adicionamento de métodos vazios que serão tratados futuramente, remoção da label &quot;sexo&quot; e adicionamento da opção &quot;prefiro não dizer&quot;.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataBase.properties" beforeDir="false" afterPath="$PROJECT_DIR$/DataBase.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/DataBase/DataBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/DataBase/DataBase.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sistemadecadastro/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sistemadecadastro/Controller.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sistemadecadastro/SistemaDeCadastro.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sistemadecadastro/SistemaDeCadastro.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/sistemadecadastro/SistemaDeCadastro.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/sistemadecadastro/SistemaDeCadastro.fxml" afterDir="false" />
@@ -32,6 +29,9 @@
       </MavenImportingSettings>
     </option>
   </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectId" id="2L0fyuJ8VZSevdwmfX4MtEMb0EQ" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -45,10 +45,11 @@
     &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/JÚlio César/Desktop/Júlio/mysql-connector-j-8.0.32/mysql-connector-j-8.0.32.jar&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/JÚlio César/Desktop/Júlio/SceneBuilder.lnk&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;SDKs&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.JavaFX&quot;
   }
 }</component>
   <component name="RecentsManager">
@@ -85,6 +86,14 @@
       <option name="presentableId" value="Default" />
       <updated>1675013179885</updated>
     </task>
+    <task id="LOCAL-00001" summary="Acionamento da função &quot;cadastrar&quot;, mudança no nome do botão, adicionamento de métodos vazios que serão tratados futuramente, remoção da label &quot;sexo&quot; e adicionamento da opção &quot;prefiro não dizer&quot;.">
+      <created>1675211551691</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1675211551691</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -112,9 +121,15 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="Acionamento da função &quot;cadastrar&quot;, mudança no nome do botão, adicionamento de métodos vazios que serão tratados futuramente, remoção da label &quot;sexo&quot; e adicionamento da opção &quot;prefiro não dizer&quot;." />
+    <option name="LAST_COMMIT_MESSAGE" value="Acionamento da função &quot;cadastrar&quot;, mudança no nome do botão, adicionamento de métodos vazios que serão tratados futuramente, remoção da label &quot;sexo&quot; e adicionamento da opção &quot;prefiro não dizer&quot;." />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Cadastro$SistemaDeCadastro.ic" NAME="SistemaDeCadastro Coverage Results" MODIFIED="1675207728422" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/Cadastro$SistemaDeCadastro.ic" NAME="SistemaDeCadastro Coverage Results" MODIFIED="1675355097081" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>com.example.sistemadecadastro.*</FILTER>
     </SUITE>
   </component>
