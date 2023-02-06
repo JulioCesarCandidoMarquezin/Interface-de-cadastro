@@ -31,13 +31,7 @@ public class Controller implements Initializable{
     private ToggleGroup grupoDeRadioButtons = new ToggleGroup();
 
     @FXML
-    private RadioButton homem;
-
-    @FXML
-    private RadioButton mulher;
-
-    @FXML
-    private RadioButton prefiroNaoDizer;
+    private RadioButton homem, mulher, prefiroNaoDizer;
 
     @FXML
     public Button botaoCadastrar;
@@ -46,43 +40,57 @@ public class Controller implements Initializable{
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        DataBase.getConnection();
-        Limitacoes.limitarCompoDoNomeComApenasLetras(nome);
-        Limitacoes.limitarQuantidadeMinimaDaSenhaComUmCaracterDeCadaTipo(senha);
+        Limitacoes.limitarCompoDeNomeComApenasLetras(nome);
+        Limitacoes.limitarTamanhoMaximo(nome, 50);
+        Limitacoes.limitarTamanhoMaximo(email, 50);
+        Limitacoes.limitarTamanhoMaximo(senha, 20);
+        Limitacoes.limitarTamanhoMaximo(confirmarSenha, 20);
         homem.setToggleGroup(grupoDeRadioButtons);
         mulher.setToggleGroup(grupoDeRadioButtons);
         prefiroNaoDizer.setToggleGroup(grupoDeRadioButtons);
     }
 
+    private void listarInformacoesInvalidas(String informacao){
+        textoMostradoEmCasoDeCadastroInvalido = textoMostradoEmCasoDeCadastroInvalido.concat(informacao + "\n");
+    }
+
     private boolean validarCadastracao(){
         boolean cadastroValido = true;
+
         if(nome.getText().equals("") || nome.getText().equals(" ") || nome.getText() == null){
             cadastroValido = false;
-            textoMostradoEmCasoDeCadastroInvalido = textoMostradoEmCasoDeCadastroInvalido.concat("Digite um nome\n");
+            listarInformacoesInvalidas("Digite um nome");
         }
-        if(email.getText().equals("") || email.getText().equals(" ") || email.getText() == null || (!email.getText().contains("@gmail.com") && !email.getText().contains("@outlook.com"))){
+
+        if(email.getText().equals("") || email.getText().equals(" ") || email.getText() == null || (!email.getText().contains("@") && email.getText().contains(".com"))){
             cadastroValido = false;
-            textoMostradoEmCasoDeCadastroInvalido = textoMostradoEmCasoDeCadastroInvalido.concat("Adicione um email válido (@gmail.com ou @outlook.com)\n");
+            listarInformacoesInvalidas("Adicione um email válido");
         }
+
         try{
             dataDeNascimento.getValue().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-        } catch (Exception e){cadastroValido = false; textoMostradoEmCasoDeCadastroInvalido = textoMostradoEmCasoDeCadastroInvalido.concat("Data inválida\n");}
-        if(senha.getText().length() < 12){
-            cadastroValido = false;
-            textoMostradoEmCasoDeCadastroInvalido = textoMostradoEmCasoDeCadastroInvalido.concat((senha.getText().equals("") || senha.getText() == null) ? "Digite uma senha\n" : "Senha muito curta\n");
-        } else {
-            if(!confirmarSenha.getText().equals(senha.getText())){
-                cadastroValido = false;
-                textoMostradoEmCasoDeCadastroInvalido = textoMostradoEmCasoDeCadastroInvalido.concat("A confirmação de senha não bate com a senha\n");
-            }
         }
+        catch (Exception e){
+            cadastroValido = false; listarInformacoesInvalidas("Data inválida");
+        }
+
+        if(senha.getText().length() < 12 || senha.getText().length() > 20){
+            cadastroValido = false;
+            listarInformacoesInvalidas((senha.getText().equals("") || senha.getText() == null) ? "Digite uma senha" : "A senha deve ter pelo menos 12 caracteres\n");
+        }
+        else if(!confirmarSenha.getText().equals(senha.getText())){
+            cadastroValido = false;
+            listarInformacoesInvalidas("A confirmação de senha não é igual a senha");
+        }
+
         if(!homem.isSelected() && !mulher.isSelected() && !prefiroNaoDizer.isSelected()){
             cadastroValido = false;
-            textoMostradoEmCasoDeCadastroInvalido = textoMostradoEmCasoDeCadastroInvalido.concat("Selecione uma opção de sexo\n");
+            listarInformacoesInvalidas("Selecione uma opção de sexo");
         }
+
         if(cadastroValido && DataBase.usuarioJaCadastrado(nome.getText(), email.getText())){
             cadastroValido = false;
-            textoMostradoEmCasoDeCadastroInvalido = textoMostradoEmCasoDeCadastroInvalido.concat("usuario ou email já cadastrado");
+            listarInformacoesInvalidas("usuario ou email já cadastrado");
         }
         return cadastroValido;
     }

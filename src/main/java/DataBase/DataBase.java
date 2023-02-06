@@ -29,7 +29,7 @@ public class DataBase {
         }
     }
 
-    public static Connection getConnection(){
+    private static Connection getConnection(){
         if(conexao == null){
             try {
                 Properties properties = loadProerties();
@@ -45,7 +45,7 @@ public class DataBase {
         return conexao;
     }
 
-    public static void closeConnection(){
+    private static void closeConnection(){
         if (conexao != null){
             try {
                 conexao.close();
@@ -57,6 +57,7 @@ public class DataBase {
     }
 
     public static void cadastrarNovoUsuario(String nome, String email, Date dataNascimento, String senha, String sexo){
+        getConnection();
         try {
             PreparedStatement comandoSQL = conexao.prepareStatement(
                     "insert into cadastro "
@@ -80,6 +81,9 @@ public class DataBase {
             cadastroFalhou.setTitle("Erro ao cadastrar usuário!");
             cadastroFalhou.setHeaderText("");
             cadastroFalhou.show();
+        }
+        finally {
+            closeConnection();
         }
     }
 
