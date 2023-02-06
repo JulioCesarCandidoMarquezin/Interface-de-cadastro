@@ -80,6 +80,10 @@ public class Controller implements Initializable{
             cadastroValido = false;
             textoMostradoEmCasoDeCadastroInvalido = textoMostradoEmCasoDeCadastroInvalido.concat("Selecione uma opção de sexo\n");
         }
+        if(cadastroValido && DataBase.usuarioJaCadastrado(nome.getText(), email.getText())){
+            cadastroValido = false;
+            textoMostradoEmCasoDeCadastroInvalido = textoMostradoEmCasoDeCadastroInvalido.concat("usuario ou email já cadastrado");
+        }
         return cadastroValido;
     }
 
@@ -90,7 +94,7 @@ public class Controller implements Initializable{
         else {
             Alert alertaDeErro = new Alert(Alert.AlertType.WARNING, textoMostradoEmCasoDeCadastroInvalido);
             alertaDeErro.setResizable(false);
-            alertaDeErro.setTitle("informaçãoes faltantes para cadastro");
+            alertaDeErro.setTitle("Informaçãoes que devem ser alteradas para cadastro");
             alertaDeErro.setHeaderText("");
             alertaDeErro.show();
             textoMostradoEmCasoDeCadastroInvalido = "";
