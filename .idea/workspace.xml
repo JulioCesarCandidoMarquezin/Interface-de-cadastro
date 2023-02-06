@@ -4,15 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0f84d2bb-13f8-48a2-851b-c8d8a2fec16b" name="Changes" comment="Acionamento da função &quot;cadastrar&quot;, mudança no nome do botão, adicionamento de métodos vazios que serão tratados futuramente, remoção da label &quot;sexo&quot; e adicionamento da opção &quot;prefiro não dizer&quot;.">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataBase.properties" beforeDir="false" afterPath="$PROJECT_DIR$/DataBase.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/DataBase/DataBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/DataBase/DataBase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sistemadecadastro/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sistemadecadastro/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/sistemadecadastro/SistemaDeCadastro.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/sistemadecadastro/SistemaDeCadastro.fxml" afterDir="false" />
-    </list>
+    <list default="true" id="0f84d2bb-13f8-48a2-851b-c8d8a2fec16b" name="Changes" comment="Melhora na validação de cadastro, agora é verificado se já existe um cadastro com o nome ou email especificado. Adionado método na classe DataBase para saber se o usuario ja está cadastrado." />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -96,7 +88,14 @@
       <option name="project" value="LOCAL" />
       <updated>1675211551691</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Melhora na validação de cadastro, agora é verificado se já existe um cadastro com o nome ou email especificado. Adionado método na classe DataBase para saber se o usuario ja está cadastrado.">
+      <created>1675707845969</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1675707845969</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -125,7 +124,8 @@
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Acionamento da função &quot;cadastrar&quot;, mudança no nome do botão, adicionamento de métodos vazios que serão tratados futuramente, remoção da label &quot;sexo&quot; e adicionamento da opção &quot;prefiro não dizer&quot;." />
-    <option name="LAST_COMMIT_MESSAGE" value="Acionamento da função &quot;cadastrar&quot;, mudança no nome do botão, adicionamento de métodos vazios que serão tratados futuramente, remoção da label &quot;sexo&quot; e adicionamento da opção &quot;prefiro não dizer&quot;." />
+    <MESSAGE value="Melhora na validação de cadastro, agora é verificado se já existe um cadastro com o nome ou email especificado. Adionado método na classe DataBase para saber se o usuario ja está cadastrado." />
+    <option name="LAST_COMMIT_MESSAGE" value="Melhora na validação de cadastro, agora é verificado se já existe um cadastro com o nome ou email especificado. Adionado método na classe DataBase para saber se o usuario ja está cadastrado." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
