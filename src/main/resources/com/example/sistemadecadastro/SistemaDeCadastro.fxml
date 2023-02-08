@@ -33,7 +33,11 @@
    <DatePicker fx:id="dataDeNascimento" prefHeight="26.0" prefWidth="405.0" promptText="Data de nascimento" GridPane.columnSpan="3" GridPane.rowIndex="2" />
    <PasswordField fx:id="senha" prefHeight="25.0" prefWidth="134.0" promptText="Senha" GridPane.columnSpan="3" GridPane.rowIndex="3" />
    <PasswordField fx:id="confirmarSenha" prefHeight="25.0" prefWidth="270.0" promptText="Confirmar senha" GridPane.columnSpan="3" GridPane.rowIndex="4" />
-   <RadioButton fx:id="homem" mnemonicParsing="false" prefHeight="55.0" prefWidth="126.0" text="Homem" GridPane.columnIndex="3" GridPane.rowIndex="3">
+   <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="57.0" prefWidth="128.0" text="Sexo:" GridPane.columnIndex="3" GridPane.rowIndex="2">
+      <font>
+         <Font size="14.0" />
+      </font></Label>
+   <RadioButton fx:id="homem" mnemonicParsing="false" prefHeight="55.0" prefWidth="126.0" text="Homem" userData="Homem" GridPane.columnIndex="3" GridPane.rowIndex="3">
       <opaqueInsets>
          <Insets />
       </opaqueInsets>
@@ -41,11 +45,11 @@
          <Font size="14.0" />
       </font>
    </RadioButton>
-   <RadioButton fx:id="mulher" mnemonicParsing="false" prefHeight="54.0" prefWidth="116.0" text="Mulher" GridPane.columnIndex="3" GridPane.rowIndex="4">
+   <RadioButton fx:id="mulher" mnemonicParsing="false" prefHeight="54.0" prefWidth="116.0" text="Mulher" userData="Mulher" GridPane.columnIndex="3" GridPane.rowIndex="4">
       <font>
          <Font size="14.0" />
       </font></RadioButton>
-   <RadioButton fx:id="prefiroNaoDizer" mnemonicParsing="false" prefHeight="55.0" prefWidth="146.0" text="Prefiro &#10;não dizer" GridPane.columnIndex="3" GridPane.rowIndex="5">
+   <RadioButton fx:id="prefiroNaoDizer" mnemonicParsing="false" prefHeight="55.0" prefWidth="146.0" text="Prefiro &#10;não dizer" userData="Prefiro não dizer" GridPane.columnIndex="3" GridPane.rowIndex="5">
       <font>
          <Font size="14.0" />
       </font></RadioButton>
@@ -54,8 +58,4 @@
          <Font name="Segoe UI" size="14.0" />
       </font>
    </Button>
-   <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="57.0" prefWidth="128.0" text="Sexo:" GridPane.columnIndex="3" GridPane.rowIndex="2">
-      <font>
-         <Font size="14.0" />
-      </font></Label>
 </GridPane>

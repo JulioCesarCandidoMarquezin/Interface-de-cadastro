@@ -4,12 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0f84d2bb-13f8-48a2-851b-c8d8a2fec16b" name="Changes" comment=".">
+    <list default="true" id="0f84d2bb-13f8-48a2-851b-c8d8a2fec16b" name="Changes" comment="Adicionado limitadores para o tamanho maximo permitido nas caixas de texto, alteração no tamanho da janela e no layout da mesma, adicionado alerta de erro ao não conseguir carregar o FXMl. Alteração dos modificadores de acesso do get e close connection, onde agora só podem ser acessados a partir da classe.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DataBase.properties" beforeDir="false" afterPath="$PROJECT_DIR$/DataBase.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/DataBase/DataBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/DataBase/DataBase.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sistemadecadastro/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sistemadecadastro/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sistemadecadastro/Limitacoes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sistemadecadastro/Limitacoes.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sistemadecadastro/SistemaDeCadastro.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sistemadecadastro/SistemaDeCadastro.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sistemadecadastro/Exceptions.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/sistemadecadastro/SistemaDeCadastro.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/sistemadecadastro/SistemaDeCadastro.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -55,19 +55,19 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "codeWithMe.voiceChat.enabledByDefault": "false",
-    "last_opened_file_path": "C:/Users/JÚlio César/Desktop/Júlio/Projetos/InterfaceDeCadastro",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.pluginManager"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/JÚlio César/Desktop/Júlio/Projetos/InterfaceDeCadastro&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   }
-}]]></component>
+}</component>
   <component name="Push.Settings">
     <force-push-targets>
       <force-push-target remote-path="origin" branch="main" />
@@ -128,7 +128,14 @@
       <option name="project" value="LOCAL" />
       <updated>1675708151484</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Adicionado limitadores para o tamanho maximo permitido nas caixas de texto, alteração no tamanho da janela e no layout da mesma, adicionado alerta de erro ao não conseguir carregar o FXMl. Alteração dos modificadores de acesso do get e close connection, onde agora só podem ser acessados a partir da classe.">
+      <created>1675726734003</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1675726734003</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -159,7 +166,8 @@
     <MESSAGE value="Acionamento da função &quot;cadastrar&quot;, mudança no nome do botão, adicionamento de métodos vazios que serão tratados futuramente, remoção da label &quot;sexo&quot; e adicionamento da opção &quot;prefiro não dizer&quot;." />
     <MESSAGE value="Melhora na validação de cadastro, agora é verificado se já existe um cadastro com o nome ou email especificado. Adionado método na classe DataBase para saber se o usuario ja está cadastrado." />
     <MESSAGE value="." />
-    <option name="LAST_COMMIT_MESSAGE" value="." />
+    <MESSAGE value="Adicionado limitadores para o tamanho maximo permitido nas caixas de texto, alteração no tamanho da janela e no layout da mesma, adicionado alerta de erro ao não conseguir carregar o FXMl. Alteração dos modificadores de acesso do get e close connection, onde agora só podem ser acessados a partir da classe." />
+    <option name="LAST_COMMIT_MESSAGE" value="Adicionado limitadores para o tamanho maximo permitido nas caixas de texto, alteração no tamanho da janela e no layout da mesma, adicionado alerta de erro ao não conseguir carregar o FXMl. Alteração dos modificadores de acesso do get e close connection, onde agora só podem ser acessados a partir da classe." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
@@ -169,7 +177,7 @@
     <SUITE FILE_PATH="coverage/Cadastro$SistemaDeCadastro.ic" NAME="SistemaDeCadastro Coverage Results" MODIFIED="1675355097081" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>com.example.sistemadecadastro.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/InterfaceDeCadastro$SistemaDeCadastro.ic" NAME="SistemaDeCadastro Coverage Results" MODIFIED="1675707411486" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/InterfaceDeCadastro$SistemaDeCadastro.ic" NAME="SistemaDeCadastro Coverage Results" MODIFIED="1675886191593" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>com.example.sistemadecadastro.*</FILTER>
     </SUITE>
   </component>

@@ -3,7 +3,13 @@ package com.example.sistemadecadastro;
 import DataBase.DataBase;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
 
 import java.net.URL;
 import java.sql.Date;
@@ -83,7 +89,7 @@ public class Controller implements Initializable{
             listarInformacoesInvalidas("A confirmação de senha não é igual a senha");
         }
 
-        if(!homem.isSelected() && !mulher.isSelected() && !prefiroNaoDizer.isSelected()){
+        if(!grupoDeRadioButtons.getSelectedToggle().isSelected()){
             cadastroValido = false;
             listarInformacoesInvalidas("Selecione uma opção de sexo");
         }
@@ -96,8 +102,9 @@ public class Controller implements Initializable{
     }
 
     public void cadastrar(){
+        DataBase.getConnection();
         if(validarCadastracao()){
-            DataBase.cadastrarNovoUsuario(nome.getText(), email.getText(), Date.valueOf(dataDeNascimento.getValue()), senha.getText(), grupoDeRadioButtons.getSelectedToggle().selectedProperty().getName());
+            DataBase.cadastrarNovoUsuario(nome.getText(), email.getText(), Date.valueOf(dataDeNascimento.getValue()), senha.getText(), grupoDeRadioButtons.getSelectedToggle().getUserData().toString());
         }
         else {
             Alert alertaDeErro = new Alert(Alert.AlertType.WARNING, textoMostradoEmCasoDeCadastroInvalido);
@@ -107,5 +114,6 @@ public class Controller implements Initializable{
             alertaDeErro.show();
             textoMostradoEmCasoDeCadastroInvalido = "";
         }
+        DataBase.closeConnection();
     }
 }
