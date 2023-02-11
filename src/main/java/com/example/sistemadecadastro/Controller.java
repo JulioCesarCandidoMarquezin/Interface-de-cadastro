@@ -3,20 +3,16 @@ package com.example.sistemadecadastro;
 import DataBase.DataBase;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.*;
 
+import java.io.Closeable;
 import java.net.URL;
 import java.sql.Date;
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
-public class Controller implements Initializable{
+public class Controller implements Initializable, Closeable {
 
     @FXML
     private TextField nome = null;
@@ -34,86 +30,123 @@ public class Controller implements Initializable{
     private DatePicker dataDeNascimento = null;
 
     @FXML
-    private ToggleGroup grupoDeRadioButtons = new ToggleGroup();
+    protected Button botaoCadastrar;
 
-    @FXML
-    private RadioButton homem, mulher, prefiroNaoDizer;
-
-    @FXML
-    public Button botaoCadastrar;
-
-    private String textoMostradoEmCasoDeCadastroInvalido = "";
+    private String mensagemDeErro = "";
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        Limitacoes.limitarCompoDeNomeComApenasLetras(nome);
+        Limitacoes.limitarTextFieldComApenasLetras(nome);
         Limitacoes.limitarTamanhoMaximo(nome, 50);
         Limitacoes.limitarTamanhoMaximo(email, 50);
         Limitacoes.limitarTamanhoMaximo(senha, 20);
         Limitacoes.limitarTamanhoMaximo(confirmarSenha, 20);
-        homem.setToggleGroup(grupoDeRadioButtons);
-        mulher.setToggleGroup(grupoDeRadioButtons);
-        prefiroNaoDizer.setToggleGroup(grupoDeRadioButtons);
     }
 
-    private void listarInformacoesInvalidas(String informacao){
-        textoMostradoEmCasoDeCadastroInvalido = textoMostradoEmCasoDeCadastroInvalido.concat(informacao + "\n");
+    @Override
+    public void close(){
+        DataBase.closeConnection();
     }
 
-    private boolean validarCadastracao(){
-        boolean cadastroValido = true;
-
-        if(nome.getText().equals("") || nome.getText().equals(" ") || nome.getText() == null){
-            cadastroValido = false;
-            listarInformacoesInvalidas("Digite um nome");
-        }
-
-        if(email.getText().equals("") || email.getText().equals(" ") || email.getText() == null || (!email.getText().contains("@") && email.getText().contains(".com"))){
-            cadastroValido = false;
-            listarInformacoesInvalidas("Adicione um email válido");
-        }
-
-        try{
-            dataDeNascimento.getValue().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-        }
-        catch (Exception e){
-            cadastroValido = false; listarInformacoesInvalidas("Data inválida");
-        }
-
-        if(senha.getText().length() < 12 || senha.getText().length() > 20){
-            cadastroValido = false;
-            listarInformacoesInvalidas((senha.getText().equals("") || senha.getText() == null) ? "Digite uma senha" : "A senha deve ter pelo menos 12 caracteres\n");
-        }
-        else if(!confirmarSenha.getText().equals(senha.getText())){
-            cadastroValido = false;
-            listarInformacoesInvalidas("A confirmação de senha não é igual a senha");
-        }
-
-        if(!grupoDeRadioButtons.getSelectedToggle().isSelected()){
-            cadastroValido = false;
-            listarInformacoesInvalidas("Selecione uma opção de sexo");
-        }
-
-        if(cadastroValido && DataBase.usuarioJaCadastrado(nome.getText(), email.getText())){
-            cadastroValido = false;
-            listarInformacoesInvalidas("usuario ou email já cadastrado");
-        }
-        return cadastroValido;
-    }
-
-    public void cadastrar(){
-        DataBase.getConnection();
-        if(validarCadastracao()){
-            DataBase.cadastrarNovoUsuario(nome.getText(), email.getText(), Date.valueOf(dataDeNascimento.getValue()), senha.getText(), grupoDeRadioButtons.getSelectedToggle().getUserData().toString());
-        }
-        else {
-            Alert alertaDeErro = new Alert(Alert.AlertType.WARNING, textoMostradoEmCasoDeCadastroInvalido);
+    public void cadastrar() {
+        if (cadastroValido()) {
+            DataBase.cadastrarUsuario(nome.getText(), email.getText(), Date.valueOf(dataDeNascimento.getValue()), senha.getText());
+            Alert cadastroRealizado = new Alert(Alert.AlertType.INFORMATION, "Usuário cadastrado com sucesso!");
+            cadastroRealizado.setTitle("Cadastro realizado");
+            cadastroRealizado.setHeaderText("");
+            cadastroRealizado.show();
+            limparFormulario();
+        } else {
+            Alert alertaDeErro = new Alert(Alert.AlertType.WARNING, mensagemDeErro);
             alertaDeErro.setResizable(false);
-            alertaDeErro.setTitle("Informaçãoes que devem ser alteradas para cadastro");
+            alertaDeErro.setTitle("Informações que devem ser alteradas para cadastro");
             alertaDeErro.setHeaderText("");
             alertaDeErro.show();
-            textoMostradoEmCasoDeCadastroInvalido = "";
+            mensagemDeErro = "";
         }
-        DataBase.closeConnection();
+    }
+
+    private void informacaoDeErro(String informacao){
+        mensagemDeErro = mensagemDeErro.concat(informacao + "\n");
+    }
+
+    private boolean cadastroValido(){
+        boolean nomeValido = verificarNome();
+        boolean emailValido = verificarEmail();
+        boolean dataValida = verificarDataDeNascimento();
+        boolean senhaValida = verificarSenha();
+        return (nomeValido && emailValido && dataValida && senhaValida);
+    }
+
+    private boolean verificarNome() {
+        String nomeInformado = nome.getText();
+        if (nomeInformado == null || nomeInformado.trim().isEmpty()) {
+            informacaoDeErro("Digite um nome");
+            return false;
+        }
+        else if (DataBase.usuarioJaCadastrado(nome.getText())) {
+            informacaoDeErro("Nome já cadastrado");
+            return false;
+        }
+        return true;
+    }
+
+    private boolean verificarEmail() {
+        String emailInformado = email.getText();
+        if (emailInformado == null || emailInformado.trim().isEmpty() || !emailInformado.contains("@") || !emailInformado.contains(".com")) {
+            informacaoDeErro("Digite um email válido");
+            return false;
+        }
+        else if (DataBase.emailJaCadastrado(email.getText())) {
+            informacaoDeErro("Email já cadastrado");
+            return false;
+        }
+        return true;
+    }
+
+    private boolean verificarDataDeNascimento() {
+        if(dataDeNascimento.getValue() == null){
+            informacaoDeErro("Informe uma data");
+            return false;
+        }
+        else if(dataDeNascimento.getValue().isAfter(LocalDate.now())){
+            informacaoDeErro("A data informada é posterior à hoje");
+            return false;
+        }
+        else {
+            try {
+                dataDeNascimento.getValue().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+                return true;
+            } catch (Exception e) {
+                informacaoDeErro("Data inválida");
+                return false;
+            }
+        }
+    }
+
+    private boolean verificarSenha() {
+        String senhaInformada = senha.getText();
+        String confirmacaoDeSenha = confirmarSenha.getText();
+        if (senhaInformada == null || senhaInformada.trim().isEmpty()) {
+            informacaoDeErro("Digite uma senha");
+            return false;
+        }
+        else if (senhaInformada.length() < 12 || senhaInformada.length() > 20) {
+            informacaoDeErro("A senha deve ter entre 12 e 20 caracteres");
+            return false;
+        }
+        else if (!confirmacaoDeSenha.equals(senhaInformada)) {
+            informacaoDeErro("As senhas não correspondem");
+            return false;
+        }
+        return true;
+    }
+
+    private void limparFormulario(){
+        nome.clear();
+        email.clear();
+        senha.clear();
+        confirmarSenha.clear();
+        dataDeNascimento.setValue(null);
     }
 }

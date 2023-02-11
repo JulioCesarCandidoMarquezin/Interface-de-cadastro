@@ -1,7 +1,5 @@
 package DataBase;
 
-import javafx.scene.control.Alert;
-
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.Connection;
@@ -17,8 +15,12 @@ public class DataBase {
 
     private static Connection conexao = null;
 
+    public static boolean connectionIsNull(){
+        return conexao == null;
+    }
+
     private static Properties loadProerties(){
-        try{
+        try {
             FileInputStream fs = new FileInputStream("DataBase.properties");
             Properties properties = new Properties();
             properties.load(fs);
@@ -30,17 +32,21 @@ public class DataBase {
     }
 
     public static Connection getConnection(){
-        if(conexao == null){
-            try {
+        try {
+            if(connectionIsNull()){
                 Properties properties = loadProerties();
                 String url = properties.getProperty("dburl");
                 String usuario = properties.getProperty("usuario");
                 String senha = properties.getProperty("senha");
                 conexao = DriverManager.getConnection(url, usuario, senha);
             }
-            catch (SQLException e){
-                throw new DataBaseException(e.getMessage());
+            else if (conexao.isClosed()) {
+                conexao = null;
+                getConnection();
             }
+        }
+        catch (SQLException e){
+            throw new DataBaseException(e.getMessage());
         }
         return conexao;
     }
@@ -56,51 +62,60 @@ public class DataBase {
         }
     }
 
-    public static void cadastrarNovoUsuario(String nome, String email, Date dataNascimento, String senha, String sexo){
-        try {
+    public static void cadastrarUsuario( String nome, String email, Date dataNascimento, String senha){
+        try (Connection conexao = getConnection()){
             PreparedStatement comandoSQL = conexao.prepareStatement(
                     "insert into cadastro "
-                    + "(nome, email, dataDeNascimento, senha, sexo) "
+                    + "(nome, email, dataDeNascimento, senha) "
                     + "values "
-                    + "(?,?,?,?,?)"
+                    + "(?,?,?,?)"
             );
             comandoSQL.setString(1, nome);
             comandoSQL.setString(2, email);
             comandoSQL.setDate(3, dataNascimento);
             comandoSQL.setString(4, senha);
-            comandoSQL.setString(5, sexo);
             comandoSQL.executeUpdate();
-            Alert cadastroRealizado = new Alert(Alert.AlertType.INFORMATION, "Usuario cadastrado com sucesso!");
-            cadastroRealizado.setTitle("Cadastro realizado");
-            cadastroRealizado.setHeaderText("");
-            cadastroRealizado.show();
         }
-        catch (SQLException excecaoCadastro) {
-            throw new DataBaseException(excecaoCadastro.getMessage());
+        catch (SQLException e) {
+            throw new DataBaseException(e.getMessage());
         }
     }
 
-    public static boolean usuarioJaCadastrado(String nome, String email){
-        try {
-            boolean naoExisteNomeOuEmail = false;
-            Statement pesquisaDeNomesEmails = conexao.createStatement();
-            ResultSet resultadoDaPesquisa = pesquisaDeNomesEmails.executeQuery("select nome, email from cadastro");
+    public static boolean usuarioJaCadastrado(String nome){
+        try (Connection conexao = getConnection()){
+            boolean usuarioCadastrado = false;
+            Statement pesquisaUsuarios = conexao.createStatement();
+            ResultSet resultadoDaPesquisa = pesquisaUsuarios.executeQuery("select nome from cadastro");
             while(resultadoDaPesquisa.next()){
                 if(resultadoDaPesquisa.getString("nome").hashCode() == nome.hashCode()){
                     if(resultadoDaPesquisa.getString("nome").equals(nome)){
-                        pesquisaDeNomesEmails.close();
-                        return !naoExisteNomeOuEmail;
-                    }
-                }
-                if(resultadoDaPesquisa.getString("email").hashCode() == email.hashCode()){
-                    if(resultadoDaPesquisa.getString("email").equals(email)){
-                        pesquisaDeNomesEmails.close();
-                        return !naoExisteNomeOuEmail;
+                        pesquisaUsuarios.close();
+                        return !usuarioCadastrado;
                     }
                 }
             }
-            pesquisaDeNomesEmails.close();
-            return naoExisteNomeOuEmail;
+            pesquisaUsuarios.close();
+            return usuarioCadastrado;
+        } catch (SQLException e) {
+            throw new DataBaseException(e.getMessage());
+        }
+    }
+
+    public static boolean emailJaCadastrado(String email){
+        try (Connection conexao = getConnection()){
+            boolean emailCadastrado = false;
+            Statement pesquisaEmails = conexao.createStatement();
+            ResultSet resultadoDaPesquisa = pesquisaEmails.executeQuery("select email from cadastro");
+            while(resultadoDaPesquisa.next()){
+                if(resultadoDaPesquisa.getString("email").hashCode() == email.hashCode()){
+                    if(resultadoDaPesquisa.getString("email").equals(email)){
+                        pesquisaEmails.close();
+                        return !emailCadastrado;
+                    }
+                }
+            }
+            pesquisaEmails.close();
+            return emailCadastrado;
         } catch (SQLException e) {
             throw new DataBaseException(e.getMessage());
         }

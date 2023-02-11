@@ -20,7 +20,7 @@ public class SistemaDeCadastro extends Application {
             stage.setScene(scene);
             stage.show();
         }
-        catch (IOException e){
+        catch (IOException ioe){
             Alert erroAoCarregarFXML = new Alert(Alert.AlertType.ERROR, "Não foi possível carregar o FXML");
             erroAoCarregarFXML.setTitle("Erro");
             erroAoCarregarFXML.setHeaderText("");

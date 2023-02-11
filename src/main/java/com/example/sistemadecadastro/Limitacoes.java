@@ -5,10 +5,10 @@ import javafx.scene.control.TextField;
 
 public class Limitacoes {
 
-    public static void limitarCompoDeNomeComApenasLetras(TextField nome){
-        nome.textProperty().addListener((obs, valorAntigo, novoValor) -> {
+    public static void limitarTextFieldComApenasLetras(TextField textField){
+        textField.textProperty().addListener((obs, valorAntigo, novoValor) -> {
             if (novoValor != null && !novoValor.matches("[A-Za-zãõúáéíóâôê ]*")) {
-                nome.setText(valorAntigo);
+                textField.setText(valorAntigo);
             }
         });
     }
