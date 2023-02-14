@@ -4,10 +4,10 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>Main</groupId>
-    <artifactId>Cadastro</artifactId>
+    <groupId>com.example</groupId>
+    <artifactId>InterfaceDeCadastro</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <name>Cadastro</name>
+    <name>SistemaCRUD</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -112,7 +112,7 @@
                         <!-- Default configuration for running with: mvn clean javafx:run -->
                         <id>default-cli</id>
                         <configuration>
-                            <mainClass>main.cadastro/main.cadastro.HelloApplication</mainClass>
+                            <mainClass>com.example.sistemacrud/com.example.sistemacrud.HelloApplication</mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>
                             <jlinkImageName>app</jlinkImageName>

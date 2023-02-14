@@ -6,7 +6,7 @@ public class DataBaseException extends RuntimeException{
     @Serial
     private static final long serialVersionUID = 1L;
 
-    public DataBaseException(String msg){
+    DataBaseException(String msg){
         super(msg);
     }
 }

@@ -13,13 +13,13 @@ import java.util.Properties;
 
 public class DataBase {
 
-    private static Connection conexao = null;
+    private Connection conexao = null;
 
-    public static boolean connectionIsNull(){
+    public boolean connectionIsNull(){
         return conexao == null;
     }
 
-    private static Properties loadProerties(){
+    private Properties loadProerties(){
         try {
             FileInputStream fs = new FileInputStream("DataBase.properties");
             Properties properties = new Properties();
@@ -31,7 +31,7 @@ public class DataBase {
         }
     }
 
-    public static Connection getConnection(){
+    public Connection getConnection(){
         try {
             if(connectionIsNull()){
                 Properties properties = loadProerties();
@@ -51,7 +51,7 @@ public class DataBase {
         return conexao;
     }
 
-    public static void closeConnection(){
+    public void closeConnection(){
         if (conexao != null){
             try {
                 conexao.close();
@@ -62,7 +62,7 @@ public class DataBase {
         }
     }
 
-    public static void cadastrarUsuario( String nome, String email, Date dataNascimento, String senha){
+    public void cadastrarUsuario( String nome, String email, Date dataNascimento, String senha){
         try (Connection conexao = getConnection()){
             PreparedStatement comandoSQL = conexao.prepareStatement(
                     "insert into cadastro "
@@ -81,7 +81,7 @@ public class DataBase {
         }
     }
 
-    public static boolean usuarioJaCadastrado(String nome){
+    public boolean usuarioJaCadastrado(String nome){
         try (Connection conexao = getConnection()){
             boolean usuarioCadastrado = false;
             Statement pesquisaUsuarios = conexao.createStatement();
@@ -101,7 +101,7 @@ public class DataBase {
         }
     }
 
-    public static boolean emailJaCadastrado(String email){
+    public boolean emailJaCadastrado(String email){
         try (Connection conexao = getConnection()){
             boolean emailCadastrado = false;
             Statement pesquisaEmails = conexao.createStatement();
