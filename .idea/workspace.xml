@@ -1,24 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="InterfaceDeCadastro" />
+    </artifacts-to-build>
+  </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a37f2286-a590-4840-ae30-4c36f28bb4b4" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/sistemadecadastro/Verificacoes.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="a37f2286-a590-4840-ae30-4c36f28bb4b4" name="Changes" comment="Criação da classe &quot;Validacoes&quot;, para diminuir o tamanho da classe controler e separar melhor as funcionalidades. Verificacoes, Limitacoes e DataBase tiveram seus métodos transformados em non-static e agora as classes devem ser instanciadas para uso.">
+      <change afterPath="$PROJECT_DIR$/Icone.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Interface/Verificacoes.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mvnw" beforeDir="false" afterPath="$PROJECT_DIR$/mvnw" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mvnw.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/mvnw.cmd" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/DataBase/DataBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/DataBase/DataBase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/DataBase/DataBaseException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/DataBase/DataBaseException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sistemadecadastro/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sistemadecadastro/Controlador.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sistemadecadastro/Limitacoes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sistemadecadastro/Limitacoes.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sistemadecadastro/SistemaDeCadastro.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sistemadecadastro/SistemaDeCadastro.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sistemadecadastro/adicionarNovoUsuario.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/sistemadecadastro/SistemaDeCadastro.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/sistemadecadastro/SistemaDeCadastro.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Interface/Controlador.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Interface/Controlador.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Interface/SistemaDeCadastro.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Interface/SistemaDeCadastro.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,7 +61,16 @@
     </option>
   </component>
   <component name="ProblemsViewState">
+    <hideBySeverity>
+      <option value="11" />
+      <option value="12" />
+      <option value="13" />
+      <option value="14" />
+      <option value="15" />
+      <option value="16" />
+    </hideBySeverity>
     <option name="selectedTabId" value="CurrentFile" />
+    <option name="showPreview" value="true" />
   </component>
   <component name="ProjectId" id="2L0fyuJ8VZSevdwmfX4MtEMb0EQ" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -73,20 +80,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "codeWithMe.voiceChat.enabledByDefault": "false",
-    "last_opened_file_path": "C:/Users/JÚlio César/Desktop/Júlio/mysql-connector-j-8.0.32/mysql-connector-j-8.0.32.jar",
-    "project.structure.last.edited": "Libraries",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.48216483",
-    "settings.editor.selected.configurable": "preferences.lookFeel"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/JÚlio César/Desktop/Júlio/mysql-connector-j-8.0.32/mysql-connector-j-8.0.32.jar&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Artifacts&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.48216483&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;
   }
-}]]></component>
+}</component>
   <component name="Push.Settings">
     <force-push-targets>
       <force-push-target remote-path="origin" branch="main" />
@@ -94,20 +101,20 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\JÚlio César\Desktop\Júlio\Projetos\InterfaceDeCadastro\src\main\java\com\example\sistemadecadastro" />
       <recent name="C:\Users\JÚlio César\Desktop\Júlio\Projetos\InterfaceDeCadastro" />
+      <recent name="C:\Users\JÚlio César\Desktop\Júlio\Projetos\InterfaceDeCadastro\src\main\java\Interface" />
       <recent name="C:\Users\JÚlio César\Desktop\Júlio\Projetos\Cadastro\src" />
     </key>
   </component>
   <component name="RunManager">
     <configuration name="SistemaDeCadastro" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="ALTERNATIVE_JRE_PATH" value="openjdk-19" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
-      <option name="MAIN_CLASS_NAME" value="com.example.sistemadecadastro.SistemaDeCadastro" />
+      <option name="MAIN_CLASS_NAME" value="Interface.SistemaDeCadastro" />
       <module name="InterfaceDeCadastro" />
+      <option name="PROGRAM_PARAMETERS" value="$JDKPath$" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.example.sistemadecadastro.*" />
+          <option name="PATTERN" value="Interface.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -167,7 +174,14 @@
       <option name="project" value="LOCAL" />
       <updated>1676159618735</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Criação da classe &quot;Validacoes&quot;, para diminuir o tamanho da classe controler e separar melhor as funcionalidades. Verificacoes, Limitacoes e DataBase tiveram seus métodos transformados em non-static e agora as classes devem ser instanciadas para uso.">
+      <created>1676343071766</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1676343071766</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -200,7 +214,8 @@
     <MESSAGE value="." />
     <MESSAGE value="Adicionado limitadores para o tamanho maximo permitido nas caixas de texto, alteração no tamanho da janela e no layout da mesma, adicionado alerta de erro ao não conseguir carregar o FXMl. Alteração dos modificadores de acesso do get e close connection, onde agora só podem ser acessados a partir da classe." />
     <MESSAGE value="Alterado o nome do método limitador de TextField. Alterado os métodos usuarioJaCadastrado e emailJaCadastrado adionado recursos no try. Implementado a interface Closable e o método Close para encerrar a conexão com o banco de dados, retirados os botões para confirmação de sexo, alteradas as posições dos métodos dentro da classe Controller para melhor leitura, método validarCadastracao foi quebrado em vários métodos, adionados os métodos limparFormulario e informacoesDeErro, também foi alterado o nome da mensagem de erro de &quot;textoMostradoEmCasoDeCadastroInvalido&quot; para &quot;mensagemDeErro&quot;." />
-    <option name="LAST_COMMIT_MESSAGE" value="Alterado o nome do método limitador de TextField. Alterado os métodos usuarioJaCadastrado e emailJaCadastrado adionado recursos no try. Implementado a interface Closable e o método Close para encerrar a conexão com o banco de dados, retirados os botões para confirmação de sexo, alteradas as posições dos métodos dentro da classe Controller para melhor leitura, método validarCadastracao foi quebrado em vários métodos, adionados os métodos limparFormulario e informacoesDeErro, também foi alterado o nome da mensagem de erro de &quot;textoMostradoEmCasoDeCadastroInvalido&quot; para &quot;mensagemDeErro&quot;." />
+    <MESSAGE value="Criação da classe &quot;Validacoes&quot;, para diminuir o tamanho da classe controler e separar melhor as funcionalidades. Verificacoes, Limitacoes e DataBase tiveram seus métodos transformados em non-static e agora as classes devem ser instanciadas para uso." />
+    <option name="LAST_COMMIT_MESSAGE" value="Criação da classe &quot;Validacoes&quot;, para diminuir o tamanho da classe controler e separar melhor as funcionalidades. Verificacoes, Limitacoes e DataBase tiveram seus métodos transformados em non-static e agora as classes devem ser instanciadas para uso." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
