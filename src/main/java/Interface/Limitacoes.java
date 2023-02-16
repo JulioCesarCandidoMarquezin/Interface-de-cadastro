@@ -1,4 +1,4 @@
-package com.example.sistemadecadastro;
+package Interface;
 
 import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
