@@ -4,6 +4,7 @@
     -fx-border-color: rgba(0,138,215,255);
     -fx-background-color: transparent;
     -fx-text-fill: black;
+    -fx-text-size: 14px;
 }
 #email{
     -fx-border-style: solid;
@@ -11,12 +12,14 @@
     -fx-border-color: rgba(0,138,215,255);
     -fx-background-color: transparent;
     -fx-text-fill: black;
+    -fx-text-size: 14px;
 }
 #dataDeNascimento{
     -fx-border-style: solid;
     -fx-border-width: 0 0 1 0 px;
     -fx-border-color: rgba(0,138,215,255);
     -fx-background-color: transparent;
+    -fx-text-size: 14px;
 }
 #senha{
     -fx-border-style: solid;
@@ -24,6 +27,7 @@
     -fx-border-color: rgba(0,138,215,255);
     -fx-background-color: transparent;
     -fx-text-fill: black;
+    -fx-text-size: 14px;
 }
 #confirmarSenha{
     -fx-background-radius: 10;
@@ -32,6 +36,7 @@
     -fx-border-color: rgba(0,138,215,255);
     -fx-background-color: transparent;
     -fx-text-fill: black;
+    -fx-text-size: 14px;
 }
 #botaoCadastrar{
     -fx-background-radius: 10;
