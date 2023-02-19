@@ -1,4 +1,4 @@
-package Interface;
+package Funcionalidades;
 
 import DataBase.DataBase;
 import javafx.scene.control.DatePicker;
@@ -27,7 +27,7 @@ public class Verificacoes {
         mensagemDeErro = mensagemDeErro.concat(erro + "\n");
     }
 
-     boolean cadastroValido(Connection conexao, TextField nome, TextField email, DatePicker dataDeNascimento, PasswordField senha, PasswordField confirmarSenha) throws SQLException{
+     public boolean cadastroValido(Connection conexao, TextField nome, TextField email, DatePicker dataDeNascimento, PasswordField senha, PasswordField confirmarSenha) throws SQLException{
          boolean nomeValido = verificarNome(conexao, nome);
          boolean emailValido = verificarEmail(conexao, email);
          boolean dataValida = verificarDataDeNascimento(dataDeNascimento);

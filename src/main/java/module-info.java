@@ -6,4 +6,6 @@ module Interface {
 
     opens Interface to javafx.fxml;
     exports Interface;
+    exports Funcionalidades;
+    opens Funcionalidades to javafx.fxml;
 }

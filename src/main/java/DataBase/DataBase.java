@@ -13,10 +13,6 @@ import java.util.Properties;
 
 public class DataBase {
 
-    public static boolean connectionIsNull(Connection conexao){
-        return conexao == null;
-    }
-
     private static Properties loadProerties(){
         try {
             FileInputStream fs = new FileInputStream("DataBase.properties");
@@ -29,20 +25,17 @@ public class DataBase {
         }
     }
 
-    public static Connection getConnection(Connection conexao){
+    public static Connection getConnection(){
         try {
-            if(connectionIsNull(conexao)){
-                Properties properties = loadProerties();
-                String url = properties.getProperty("dburl");
-                String usuario = properties.getProperty("usuario");
-                String senha = properties.getProperty("senha");
-                conexao = DriverManager.getConnection(url, usuario, senha);
-            }
+            Properties properties = loadProerties();
+            String url = properties.getProperty("dburl");
+            String usuario = properties.getProperty("usuario");
+            String senha = properties.getProperty("senha");
+            return DriverManager.getConnection(url, usuario, senha);
         }
         catch (SQLException e){
             throw new DataBaseException(e.getMessage());
         }
-        return conexao;
     }
 
     public static void closeConnection(Connection conexao){
