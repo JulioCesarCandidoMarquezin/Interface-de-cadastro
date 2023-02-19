@@ -1,0 +1,40 @@
+#nome{
+    -fx-border-style: solid;
+    -fx-border-width: 0 0 1 0 px;
+    -fx-border-color: rgba(0,138,215,255);
+    -fx-background-color: transparent;
+    -fx-text-fill: black;
+}
+#email{
+    -fx-border-style: solid;
+    -fx-border-width: 0 0 1 0 px;
+    -fx-border-color: rgba(0,138,215,255);
+    -fx-background-color: transparent;
+    -fx-text-fill: black;
+}
+#dataDeNascimento{
+    -fx-border-style: solid;
+    -fx-border-width: 0 0 1 0 px;
+    -fx-border-color: rgba(0,138,215,255);
+    -fx-background-color: transparent;
+}
+#senha{
+    -fx-border-style: solid;
+    -fx-border-width: 0 0 1 0 px;
+    -fx-border-color: rgba(0,138,215,255);
+    -fx-background-color: transparent;
+    -fx-text-fill: black;
+}
+#confirmarSenha{
+    -fx-background-radius: 10;
+    -fx-border-style: solid;
+    -fx-border-width: 0 0 1 0 px;
+    -fx-border-color: rgba(0,138,215,255);
+    -fx-background-color: transparent;
+    -fx-text-fill: black;
+}
+#botaoCadastrar{
+    -fx-background-radius: 10;
+    -fx-background-color: rgba(0,138,215,255);
+    -fx-text-fill: white;
+}

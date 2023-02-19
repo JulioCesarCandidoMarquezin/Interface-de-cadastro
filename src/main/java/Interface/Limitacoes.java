@@ -45,6 +45,14 @@ public class Limitacoes {
         });
     }
 
+    public void limitarDatePickerComApenasNumerosBarras(DatePicker datePicker){
+        datePicker.getEditor().textProperty().addListener((obs, valorAntigo, novoValor) -> {
+            if (novoValor != null && !novoValor.matches("[0-9/]*")) {
+                datePicker.getEditor().setText(valorAntigo);
+            }
+        });
+    }
+
     public void limitarDatePickerComApenasDatasValidas(DatePicker datePicker){
         datePicker.setConverter(new StringConverter<>() {
             final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
@@ -64,7 +72,6 @@ public class Limitacoes {
                     try {
                         return LocalDate.parse(string, formatter);
                     } catch (DateTimeParseException e) {
-                        // Data inválida, apagando o texto
                         datePicker.getEditor().clear();
                         return null;
                     }
@@ -94,5 +101,15 @@ public class Limitacoes {
                     }
                 };
         datePicker.setDayCellFactory(dayCellFactory);
+    }
+
+    public void adicionarBarrasAutomaticamente(DatePicker datePicker){
+        int tamanho = datePicker.getEditor().getText().length();
+        if(!datePicker.getEditor().getText().isEmpty()){
+            char ultimaLetra = datePicker.getEditor().getText().charAt(datePicker.getEditor().getText().length() - 1);
+            if ((tamanho == 2 || tamanho == 5) && '/' != ultimaLetra) {
+                datePicker.getEditor().setText(datePicker.getEditor().getText().concat("/"));
+            }
+        }
     }
 }

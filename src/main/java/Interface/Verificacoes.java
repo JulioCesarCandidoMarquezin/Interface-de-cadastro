@@ -5,6 +5,8 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -25,22 +27,22 @@ public class Verificacoes {
         mensagemDeErro = mensagemDeErro.concat(erro + "\n");
     }
 
-     boolean cadastroValido(DataBase dataBase, TextField nome, TextField email, DatePicker dataDeNascimento, PasswordField senha, PasswordField confirmarSenha){
-         boolean nomeValido = verificarNome(dataBase, nome);
-         boolean emailValido = verificarEmail(dataBase, email);
+     boolean cadastroValido(Connection conexao, TextField nome, TextField email, DatePicker dataDeNascimento, PasswordField senha, PasswordField confirmarSenha) throws SQLException{
+         boolean nomeValido = verificarNome(conexao, nome);
+         boolean emailValido = verificarEmail(conexao, email);
          boolean dataValida = verificarDataDeNascimento(dataDeNascimento);
          boolean senhaValida = verificarSenha(senha, confirmarSenha);
          return (nomeValido && emailValido && dataValida && senhaValida);
      }
 
-     boolean verificarNome(DataBase dataBase, TextField nome) {
+     boolean verificarNome(Connection conexao, TextField nome) throws SQLException {
         String nomeInformado = nome.getText();
         if (nomeInformado == null || nomeInformado.trim().isEmpty()) {
             nome.setStyle("-fx-border-color: #ffc0cb;");
             adicionarInformacaoDeErro("Digite um nome");
             return false;
         }
-        else if (dataBase.usuarioJaCadastrado(nome.getText())) {
+        else if (DataBase.usuarioJaCadastrado(conexao, nome.getText())) {
             nome.setStyle("-fx-border-color: #ffc0cb;");
             adicionarInformacaoDeErro("Nome já cadastrado");
             return false;
@@ -49,14 +51,14 @@ public class Verificacoes {
         return true;
     }
 
-     boolean verificarEmail(DataBase dataBase, TextField email) {
+     boolean verificarEmail(Connection conexao, TextField email) throws SQLException{
         String emailInformado = email.getText();
         if (emailInformado == null || emailInformado.trim().isEmpty() || !email.getText().matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$")) {
             email.setStyle("-fx-border-color: #ffc0cb;");
             adicionarInformacaoDeErro("Digite um email válido");
             return false;
         }
-        else if (dataBase.emailJaCadastrado(email.getText())) {
+        else if (DataBase.emailJaCadastrado(conexao, email.getText())) {
             email.setStyle("-fx-border-color: #ffc0cb;");
             adicionarInformacaoDeErro("Email já cadastrado");
             return false;
