@@ -74,7 +74,7 @@ public class Controlador implements Initializable, Closeable {
                 if(conexao.isClosed()){
                     conexao.beginRequest();
                 }
-                DataBase.cadastrarUsuario(conexao, nome.getText().trim(), email.getText(), Date.valueOf(dataDeNascimento.getValue()), senha.getText());
+                DataBase.cadastrarUsuario(conexao, nome.getText().trim(), email.getText().trim(), Date.valueOf(dataDeNascimento.getValue()), senha.getText());
                 mostrarAlerta(Alert.AlertType.INFORMATION, "Cadastro realizado", "", "Usuário cadastrado com sucesso!");
                 limparFormulario();
             }
