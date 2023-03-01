@@ -104,12 +104,14 @@ public class Limitacoes {
     }
 
     public void adicionarBarrasAutomaticamente(DatePicker datePicker){
-        int tamanho = datePicker.getEditor().getText().length();
-        if(!datePicker.getEditor().getText().isEmpty()){
-            char ultimaLetra = datePicker.getEditor().getText().charAt(datePicker.getEditor().getText().length() - 1);
-            if ((tamanho == 2 || tamanho == 5) && '/' != ultimaLetra) {
-                datePicker.getEditor().setText(datePicker.getEditor().getText().concat("/"));
+        datePicker.getEditor().textProperty().addListener((observableValue, valorAntigo, novoValor) -> {
+            int tamanho = datePicker.getEditor().getText().length();
+            if(!datePicker.getEditor().getText().isEmpty() && valorAntigo.length() < novoValor.length()){
+                char ultimaLetra = datePicker.getEditor().getText().charAt(datePicker.getEditor().getText().length() - 1);
+                if ((tamanho == 2 || tamanho == 5) && '/' != ultimaLetra) {
+                    datePicker.getEditor().setText(datePicker.getEditor().getText().concat("/"));
+                }
             }
-        }
+        });
     }
 }
