@@ -48,12 +48,13 @@ public class Controlador implements Initializable, Closeable {
         limitacoes.limitarTamanhoMaximo(dataDeNascimento, 10);
         limitacoes.limitarTamanhoMaximo(senha, 20);
         limitacoes.limitarTamanhoMaximo(confirmarSenha, 20);
-        limitacoes.limitarDatePickerComApenasNumerosBarras(dataDeNascimento);
         limitacoes.limitarDatePickerComApenasDatasValidas(dataDeNascimento);
+        limitacoes.limitarDatePickerComApenasNumerosBarras(dataDeNascimento);
         limitacoes.limitarDatePickerComDatasAnterioresHoje(dataDeNascimento);
-        dataDeNascimento.getEditor().textProperty().addListener((observable, oldValue, newValue) -> limitacoes.adicionarBarrasAutomaticamente(dataDeNascimento));
+        limitacoes.adicionarBarrasAutomaticamente(dataDeNascimento);
         dataDeNascimento.setShowWeekNumbers(true);
-        conexao = DataBase.getConnection();
+        Thread abrirBancoDeDadosSeparadamente = new Thread(() -> conexao = DataBase.getConnection());
+        abrirBancoDeDadosSeparadamente.start();
     }
 
     @Override
