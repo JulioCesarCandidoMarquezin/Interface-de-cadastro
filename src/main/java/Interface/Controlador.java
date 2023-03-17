@@ -53,8 +53,7 @@ public class Controlador implements Initializable, Closeable {
         limitacoes.limitarDatePickerComDatasAnterioresHoje(dataDeNascimento);
         limitacoes.adicionarBarrasAutomaticamente(dataDeNascimento);
         dataDeNascimento.setShowWeekNumbers(true);
-        Thread abrirBancoDeDadosSeparadamente = new Thread(() -> conexao = DataBase.getConnection());
-        abrirBancoDeDadosSeparadamente.start();
+        conexao = DataBase.getConnection();
     }
 
     @Override
