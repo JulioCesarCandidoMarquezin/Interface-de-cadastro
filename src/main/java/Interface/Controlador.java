@@ -16,8 +16,6 @@ import java.util.ResourceBundle;
 
 public class Controlador implements Initializable, Closeable {
 
-    private final Limitacoes limitacoes = new Limitacoes();
-
     private final Verificacoes verificacoes = new Verificacoes();
 
     @FXML
@@ -42,16 +40,16 @@ public class Controlador implements Initializable, Closeable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        limitacoes.limitarTextFieldComApenasLetras(nome);
-        limitacoes.limitarTamanhoMaximo(nome, 50);
-        limitacoes.limitarTamanhoMaximo(email, 50);
-        limitacoes.limitarTamanhoMaximo(dataDeNascimento, 10);
-        limitacoes.limitarTamanhoMaximo(senha, 20);
-        limitacoes.limitarTamanhoMaximo(confirmarSenha, 20);
-        limitacoes.limitarDatePickerComApenasDatasValidas(dataDeNascimento);
-        limitacoes.limitarDatePickerComApenasNumerosBarras(dataDeNascimento);
-        limitacoes.limitarDatePickerComDatasAnterioresHoje(dataDeNascimento);
-        limitacoes.adicionarBarrasAutomaticamente(dataDeNascimento);
+        Limitacoes.limitarTextFieldComApenasLetras(nome);
+        Limitacoes.limitarTamanhoMaximo(nome, 50);
+        Limitacoes.limitarTamanhoMaximo(email, 50);
+        Limitacoes.limitarTamanhoMaximo(dataDeNascimento, 10);
+        Limitacoes.limitarTamanhoMaximo(senha, 20);
+        Limitacoes.limitarTamanhoMaximo(confirmarSenha, 20);
+        Limitacoes.limitarDatePickerComApenasDatasValidas(dataDeNascimento);
+        Limitacoes.limitarDatePickerComApenasNumerosBarras(dataDeNascimento);
+        Limitacoes.limitarDatePickerComDatasAnterioresHoje(dataDeNascimento);
+        Limitacoes.adicionarBarrasAutomaticamente(dataDeNascimento);
         dataDeNascimento.setShowWeekNumbers(true);
         conexao = DataBase.getConnection();
     }
@@ -61,7 +59,7 @@ public class Controlador implements Initializable, Closeable {
         DataBase.closeConnection(conexao);
     }
 
-    public void mostrarAlerta(Alert.AlertType tipo, String titulo, String cabecalho, String mensagem){
+    public static void mostrarAlerta(Alert.AlertType tipo, String titulo, String cabecalho, String mensagem){
         Alert alerta = new Alert(tipo, mensagem);
         alerta.setTitle(titulo);
         alerta.setHeaderText(cabecalho);

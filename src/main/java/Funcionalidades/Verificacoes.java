@@ -13,7 +13,18 @@ import java.time.format.DateTimeFormatter;
 
 public class Verificacoes {
 
+     private Connection connection;
+
      private String mensagemDeErro = "";
+
+     public boolean cadastroValido(Connection connection, TextField nome, TextField email, DatePicker dataDeNascimento, PasswordField senha, PasswordField confirmarSenha) throws SQLException{
+         this.connection = connection;
+         boolean nomeValido = verificarNome(nome);
+         boolean emailValido = verificarEmail(email);
+         boolean dataValida = verificarDataDeNascimento(dataDeNascimento);
+         boolean senhaValida = verificarSenha(senha, confirmarSenha);
+         return (nomeValido && emailValido && dataValida && senhaValida);
+     }
 
      public String getMensagemDeErro() {
         return mensagemDeErro;
@@ -23,26 +34,18 @@ public class Verificacoes {
         this.mensagemDeErro = mensagemDeErro;
     }
 
-     void adicionarInformacaoDeErro(String erro){
+     public void adicionarInformacaoDeErro(String erro){
         mensagemDeErro = mensagemDeErro.concat(erro + "\n");
     }
 
-     public boolean cadastroValido(Connection conexao, TextField nome, TextField email, DatePicker dataDeNascimento, PasswordField senha, PasswordField confirmarSenha) throws SQLException{
-         boolean nomeValido = verificarNome(conexao, nome);
-         boolean emailValido = verificarEmail(conexao, email);
-         boolean dataValida = verificarDataDeNascimento(dataDeNascimento);
-         boolean senhaValida = verificarSenha(senha, confirmarSenha);
-         return (nomeValido && emailValido && dataValida && senhaValida);
-     }
-
-     boolean verificarNome(Connection conexao, TextField nome) throws SQLException {
+     public boolean verificarNome(TextField nome) throws SQLException {
         String nomeInformado = nome.getText();
         if (nomeInformado == null || nomeInformado.trim().isEmpty()) {
             nome.setStyle("-fx-border-color: #ffc0cb;");
             adicionarInformacaoDeErro("Digite um nome");
             return false;
         }
-        else if (DataBase.usuarioJaCadastrado(conexao, nome.getText())) {
+        else if (DataBase.usuarioJaCadastrado(connection, nome.getText())) {
             nome.setStyle("-fx-border-color: #ffc0cb;");
             adicionarInformacaoDeErro("Nome já cadastrado");
             return false;
@@ -51,14 +54,14 @@ public class Verificacoes {
         return true;
     }
 
-     boolean verificarEmail(Connection conexao, TextField email) throws SQLException{
+     public boolean verificarEmail(TextField email) throws SQLException{
         String emailInformado = email.getText();
         if (emailInformado == null || emailInformado.trim().isEmpty() || !email.getText().matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$")) {
             email.setStyle("-fx-border-color: #ffc0cb;");
             adicionarInformacaoDeErro("Digite um email válido");
             return false;
         }
-        else if (DataBase.emailJaCadastrado(conexao, email.getText())) {
+        else if (DataBase.emailJaCadastrado(connection, email.getText())) {
             email.setStyle("-fx-border-color: #ffc0cb;");
             adicionarInformacaoDeErro("Email já cadastrado");
             return false;
@@ -67,7 +70,7 @@ public class Verificacoes {
         return true;
     }
 
-     boolean verificarDataDeNascimento(DatePicker dataDeNascimento) {
+     public boolean verificarDataDeNascimento(DatePicker dataDeNascimento) {
         if(dataDeNascimento.getValue() == null){
             dataDeNascimento.setStyle("-fx-border-color: #ffc0cb;");
             adicionarInformacaoDeErro("Informe uma data");
@@ -91,7 +94,7 @@ public class Verificacoes {
         }
     }
 
-     boolean verificarSenha(PasswordField senha, PasswordField confirmarSenha) {
+     public boolean verificarSenha(PasswordField senha, PasswordField confirmarSenha) {
         String senhaInformada = senha.getText();
         String confirmacaoDeSenha = confirmarSenha.getText();
         if (senhaInformada == null || senhaInformada.trim().isEmpty()) {

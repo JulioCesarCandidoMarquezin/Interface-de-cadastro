@@ -13,7 +13,7 @@ import java.time.format.DateTimeParseException;
 
 public class Limitacoes {
 
-    public void limitarTextFieldComApenasLetras(TextField textField) {
+    public static void limitarTextFieldComApenasLetras(TextField textField) {
         textField.textProperty().addListener((obs, valorAntigo, novoValor) -> {
             if (novoValor != null && !novoValor.matches("[A-Za-zãõúáéíóâôê ]*")) {
                 textField.setText(valorAntigo);
@@ -21,7 +21,7 @@ public class Limitacoes {
         });
     }
 
-    public void limitarTamanhoMaximo(TextField textField, int tamanhoMaximo){
+    public static void limitarTamanhoMaximo(TextField textField, int tamanhoMaximo){
         textField.textProperty().addListener((obs, valorAntigo, novoValor) ->{
             if(novoValor != null && novoValor.length() > tamanhoMaximo){
                 textField.setText(valorAntigo);
@@ -29,7 +29,7 @@ public class Limitacoes {
         });
     }
 
-    public void limitarTamanhoMaximo(PasswordField passwordField, int tamanhoMaximo){
+    public static void limitarTamanhoMaximo(PasswordField passwordField, int tamanhoMaximo){
         passwordField.textProperty().addListener((obs, valorAntigo, novoValor) ->{
             if(novoValor != null && novoValor.length() > tamanhoMaximo){
                 passwordField.setText(valorAntigo);
@@ -37,7 +37,7 @@ public class Limitacoes {
         });
     }
 
-    public void limitarTamanhoMaximo(DatePicker datePicker, int tamanhoMaximo){
+    public static void limitarTamanhoMaximo(DatePicker datePicker, int tamanhoMaximo){
         datePicker.getEditor().textProperty().addListener((obs, valorAntigo, novoValor) ->{
             if(novoValor != null && novoValor.length() > tamanhoMaximo){
                 datePicker.getEditor().setText(valorAntigo);
@@ -45,7 +45,7 @@ public class Limitacoes {
         });
     }
 
-    public void limitarDatePickerComApenasNumerosBarras(DatePicker datePicker){
+    public static void limitarDatePickerComApenasNumerosBarras(DatePicker datePicker){
         datePicker.getEditor().textProperty().addListener((obs, valorAntigo, novoValor) -> {
             if (novoValor != null && !novoValor.matches("[0-9/]*")) {
                 datePicker.getEditor().setText(valorAntigo);
@@ -53,7 +53,7 @@ public class Limitacoes {
         });
     }
 
-    public void limitarDatePickerComApenasDatasValidas(DatePicker datePicker){
+    public static void limitarDatePickerComApenasDatasValidas(DatePicker datePicker){
         datePicker.setConverter(new StringConverter<>() {
             final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
@@ -82,7 +82,7 @@ public class Limitacoes {
         });
     }
 
-    public void limitarDatePickerComDatasAnterioresHoje(DatePicker datePicker){
+    public static void limitarDatePickerComDatasAnterioresHoje(DatePicker datePicker){
         final Callback<DatePicker, DateCell> dayCellFactory =
                 new Callback<>() {
                     @Override
@@ -103,7 +103,7 @@ public class Limitacoes {
         datePicker.setDayCellFactory(dayCellFactory);
     }
 
-    public void adicionarBarrasAutomaticamente(DatePicker datePicker){
+    public static void adicionarBarrasAutomaticamente(DatePicker datePicker){
         datePicker.getEditor().textProperty().addListener((observableValue, valorAntigo, novoValor) -> {
             int tamanho = datePicker.getEditor().getText().length();
             if(!datePicker.getEditor().getText().isEmpty() && valorAntigo.length() < novoValor.length()){

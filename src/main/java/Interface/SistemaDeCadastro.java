@@ -24,7 +24,7 @@ public class SistemaDeCadastro extends Application {
             stage.show();
         }
         catch (IOException ioe){
-            throw new RuntimeException("Não foi pssível carregar o FXML");
+            throw new RuntimeException("Não foi possível carregar o FXML");
         }
     }
 
